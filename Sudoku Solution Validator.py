@@ -2,14 +2,14 @@ from itertools import chain
 
 def validSolution(board):
     # find subgrids
-    subgrids = [[], [], [], [], [], [], [], [], []]
-    count = 0
+    subgrids = []
     for subgrid in range(0, 9, 3):
         for subrow in range(0, 9, 3):
-            subgrids[count] += board[subgrid][subrow:subrow+3]
-            subgrids[count] += board[subgrid+1][subrow:subrow+3]
-            subgrids[count] += board[subgrid+2][subrow:subrow+3]
-            count += 1
+            tmp = board[subgrid][subrow:subrow+3]
+            tmp += board[subgrid+1][subrow:subrow+3]
+            tmp += board[subgrid+2][subrow:subrow+3]
+            subgrids.append(tmp)
+            
     
     # check all
     to_check = chain(board, zip(*board), subgrids)
